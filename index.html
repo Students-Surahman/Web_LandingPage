@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperGlory - Jasa Joki Mobile Legends Profesional </title>
+    <link rel="icon" href="gaming1.png" type="image/png">
+    <!-- Font Awesome CDN untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfigurasi Custom Theme Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gaming: {
+                            dark: '#0B0E14',
+                            card: '#131A26',
+                            primary: '#8B5CF6',
+                            secondary: '#06B6D4',
+                            accent: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B0E14;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+        }
+        /* Style Transisi Efek Accordion FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        .faq-active .faq-answer {
+            max-height: 200px;
+            padding-top: 12px;
+        }
+        .faq-active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Navbar Menu Border Active/Hover */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(6, 182, 212, 0.1);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+        
+        /* Social Media Icon Styling */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            color: #06B6D4;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            border-color: #8B5CF6;
+            color: #8B5CF6;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="text-gray-200 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-[#0B0E14]/80 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="bg-gradient-to-tr from-violet-600 p-2 rounded-xl shadow-lg shadow-violet-600/20">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-gray-200 to-cyan-400 bg-clip-text text-transparent">HYPER<span class="text-cyan-400"> GLORY</span></span>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
+                    <a href="#hero" class="nav-link text-gray-400 hover:text-white  transition-colors">Home</a>
+                    <a href="#fitur" class="nav-link text-gray-400 hover:text-white transition-colors">Keunggulan</a>
+                    <a href="#harga" class="nav-link text-gray-400 hover:text-white transition-colors">Daftar Harga</a>
+                    <a href="#testimoni" class="nav-link text-gray-400 hover:text-white transition-colors">Testimoni</a>
+                    <a href="#faq" class="nav-link text-gray-400 hover:text-white transition-colors">FAQ</a>
+                </div>
+                
+                <!-- CTA Button Desktop -->
+                <div class="hidden md:block">
+                    <a href="#harga" class="bg-gradient-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 text-white text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg shadow-violet-600/20 hover:scale-105">
+                        Order Sekarang
+                    </a>
+                </div>
+
+                <!-- Hamburger Menu Button Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0B0E14] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="block text-cyan-400 font-semibold py-2">Home</a>
+            <a href="#fitur" class="block text-gray-400 hover:text-white font-semibold py-2">Keunggulan</a>
+            <a href="#harga" class="block text-gray-400 hover:text-white font-semibold py-2">Daftar Harga</a>
+            <a href="#testimoni" class="block text-gray-400 hover:text-white font-semibold py-2">Testimoni</a>
+            <a href="#faq" class="block text-gray-400 hover:text-white font-semibold py-2">FAQ</a>
+            <div class="pt-4">
+                <a href="#harga" class="block text-center bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-bold py-3 rounded-xl">Order Sekarang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-24 md:pt-20 md:pb-32">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_45%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(6,182,212,0.08),transparent_40%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Side -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-4 py-1.5 text-xs font-semibold text-violet-400 tracking-wide uppercase">
+                        <i class="fa-solid fa-shield-halved text-sm"></i> 100% Aman & Garansi Anti-Ban
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        Melesat ke <span class="bg-gradient-to-r from-violet-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">Mythic Glory</span> Bersama Pro Player Core!
+                    </h1>
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                        Bosan terjebak di Epic atau terperangkap di Zona Legend? Tim Joki Hyper kami siap menggendong akunmu dengan tingkat kemenangan (*win rate*) tinggi, proses kilat, dan privasi super ketat.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <!-- Kirim Pesan WA Otomatis -->
+                        <a href="https://api.whatsapp.com/send?phone=628xxxxxxxxxx&text=Halo%20Admin%20HyperGlory,%20saya%20tertarik%20untuk%20order%20joki%20Mobile%20Legends." target="_blank" class="glow-button flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-xl shadow-cyan-500/10">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Hubungi Admin Via WA
+                        </a>
+                        <a href="#harga" class="flex items-center justify-center gap-2 bg-[#131A26] hover:bg-gray-800/80 border border-gray-800 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300">
+                            Cek Paket Harga <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Stats Counter -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 max-w-md mx-auto lg:mx-0 border-t border-gray-800/60">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">5K+</p>
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1">Order Selesai</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-cyan-400">98,7%</p>
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1">Win Rate Joki</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-violet-400">100%</p>
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1">Aman & Rahasia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Component Side (Dashboard UI Simulation) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-500 opacity-20 blur-xl animate-pulse"></div>
+                    <div class="relative bg-[#131A26] border border-gray-800 rounded-2xl p-6 shadow-2xl overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+                        <div class="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest">Status Progress Langsung</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-[#0B0E14]/60 border border-gray-800/80 rounded-xl p-4 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-xl font-bold shadow-md shadow-amber-600/20 text-white">E</div>
+                                    <div>
+                                        <p class="text-xs text-gray-500 font-medium">Rank Sekarang</p>
+                                        <p class="text-sm font-bold text-white">Epic V</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-gray-600"></i>
+                                <div class="flex items-center gap-3 text-right">
+                                    <div>
+                                        <p class="text-xs text-gray-500 font-medium">Rank Target</p>
+                                        <p class="text-sm font-bold text-cyan-400">Mythic Glory</p>
+                                    </div>
+                                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center text-xl font-bold shadow-md shadow-cyan-600/20 text-white">M</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs font-semibold">
+                                    <span class="text-gray-400">Progres Pengerjaan</span>
+                                    <span class="text-cyan-400">85% Selesai</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-[#0B0E14] rounded-full overflow-hidden p-0.5 border border-gray-800">
+                                    <div class="h-full bg-gradient-to-r from-violet-600 to-cyan-400 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Match Results Simulation -->
+                            <div class="pt-2">
+                                <p class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Hasil Pertandingan Terakhir:</p>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-2 text-center">
+                                        <span class="text-xs font-black text-emerald-400 block">VICTORY</span>
+                                        <span class="text-[10px] text-gray-500 font-medium">MVP (Hyper)</span>
+                                    </div>
+                                    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-2 text-center">
+                                        <span class="text-xs font-black text-emerald-400 block">VICTORY</span>
+                                        <span class="text-[10px] text-gray-500 font-medium">12 / 1 / 8</span>
+                                    </div>
+                                    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-2 text-center">
+                                        <span class="text-xs font-black text-emerald-400 block">VICTORY</span>
+                                        <span class="text-[10px] text-gray-500 font-medium">MVP (Core)</span>
+                                    </div>
+                                    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-2 text-center">
+                                        <span class="text-xs font-black text-emerald-400 block">VICTORY</span>
+                                        <span class="text-[10px] text-gray-500 font-medium">9 / 0 / 14</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan Section -->
+    <section id="fitur" class="py-20 bg-[#131A26]/40 border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Kenapa Harus Kami?</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Layanan Joki Berkelas Tanpa Waswas</p>
+                <p class="text-gray-400 text-sm sm:text-base">Kami mengutamakan kualitas, kecepatan, dan kenyamanan pelanggan di setiap pesanan.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card Fitur 1 -->
+                <div class="bg-[#131A26] border border-gray-800/80 p-6 rounded-2xl glow-effect hover:border-violet-500/40 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 text-xl mb-5 border border-violet-500/20">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">100% Aman & Anonim</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Data akun dienkripsi penuh. Kami menjamin kerahasiaan identitas pemilik akun tanpa kebocoran.</p>
+                </div>
+                <!-- Card Fitur 2 -->
+                <div class="bg-[#131A26] border border-gray-800/80 p-6 rounded-2xl glow-effect hover:border-cyan-500/40 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-5 border border-cyan-500/20">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Proses Super Cepat</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Setelah pembayaran dikonfirmasi, joki kami langsung memproses pengerjaan tanpa antrean lama.</p>
+                </div>
+                <!-- Card Fitur 3 -->
+                <div class="bg-[#131A26] border border-gray-800/80 p-6 rounded-2xl glow-effect hover:border-amber-500/40 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl mb-5 border border-amber-500/20">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Eks Pro Player Core</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Akun Anda dikerjakan oleh mantan *pro player* top global yang ahli menguasai *role* Hyper/Carry.</p>
+                </div>
+                <!-- Card Fitur 4 -->
+                <div class="bg-[#131A26] border border-gray-800/80 p-6 rounded-2xl glow-effect hover:border-blue-500/40 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-5 border border-blue-500/20">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Layanan CS 24/7</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Butuh update perkembangan akun? Layanan pelanggan responsif kami siap membantu kapan pun dibutuhkan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paket Layanan Section -->
+    <section id="harga" class="py-20 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05),transparent_60%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-xs font-bold text-violet-400 uppercase tracking-widest">Paket Layanan</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Daftar Harga Joki Menarik & Transparan</p>
+                <p class="text-gray-400 text-sm sm:text-base">Pilih paket joki hitungan per bintang atau paket hemat full tier sesuai kebutuhan Anda.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Paket 1: Per Bintang -->
+                <div class="bg-[#131A26] border border-gray-800 p-8 rounded-3xl flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                    <div>
+                        <div class="mb-6">
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-1">Opsi Fleksibel</span>
+                            <h3 class="text-2xl font-bold text-white">Joki Per Bintang</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Cocok untuk Anda yang membutuhkan sedikit dorongan bintang ekstra untuk naik ke tier atasnya.</p>
+                        <div class="border-t border-gray-800/80 pt-6 space-y-4">
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Grandmaster</span>
+                                <span class="text-sm font-bold text-cyan-400">Rp 3.000 <span class="text-xs text-gray-500 font-normal">/ bintang</span></span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Epic</span>
+                                <span class="text-sm font-bold text-cyan-400">Rp 5.000 <span class="text-xs text-gray-500 font-normal">/ bintang</span></span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Legend</span>
+                                <span class="text-sm font-bold text-cyan-400">Rp 7.000 <span class="text-xs text-gray-500 font-normal">/ bintang</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8">
+                        <a href="https://api.whatsapp.com/send?phone=628xxxxxxxxxx&text=Halo%20Admin,%20saya%20mau%20order%20paket%20Joki%20Per%20Bintang." target="_blank" class="block w-full text-center bg-[#0B0E14] hover:bg-gray-800 border border-gray-800 font-bold py-3.5 px-4 rounded-xl text-sm transition-all duration-200">
+                            Pesan Per Bintang
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Paket 2: Full Tier -->
+                <div class="bg-[#131A26] border-2 border-cyan-500 p-8 rounded-3xl flex flex-col justify-between relative shadow-2xl shadow-cyan-500/5 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="absolute top-0 right-1/2 transform translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-extrabold text-[10px] tracking-widest uppercase py-1 px-4 rounded-full shadow-lg">
+                        Paling Populer
+                    </div>
+                    <div>
+                        <div class="mb-6">
+                            <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1">Paket Borongan</span>
+                            <h3 class="text-2xl font-bold text-white">Full Tier Drop</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Paket paling direkomendasikan jika ingin langsung naik divisi secara efisien sekaligus menghemat pengeluaran.</p>
+                        <div class="border-t border-gray-800/80 pt-6 space-y-4">
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Grandmaster ke Epic</span>
+                                <span class="text-sm font-bold text-white">Rp 75.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Epic ke Legend</span>
+                                <span class="text-sm font-bold text-white">Rp 115.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
+                                <span class="text-sm font-bold text-cyan-300">Legend ke Mythic</span>
+                                <span class="text-sm font-bold text-cyan-400">Rp 160.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8">
+                        <a href="https://api.whatsapp.com/send?phone=628xxxxxxxxxx&text=Halo%20Admin,%20saya%20mau%20order%20paket%20Hemat%20Full%20Tier." target="_blank" class="glow-button block w-full text-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 font-extrabold py-3.5 px-4 rounded-xl text-sm text-white shadow-md transition-all duration-200">
+                            Ambil Paket Full Tier
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Paket 3: Mythic Premium -->
+                <div class="bg-[#131A26] border border-gray-800 p-8 rounded-3xl flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+                    <div>
+                        <div class="mb-6">
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-1">Kasta Tertinggi</span>
+                            <h3 class="text-2xl font-bold text-white">Mythic & Placement</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Khusus bagi akun premium yang ingin memaksimalkan poin grading awal musim atau mendongkrak skor tier tinggi.</p>
+                        <div class="border-t border-gray-800/80 pt-6 space-y-4">
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Placement (10 Match)</span>
+                                <span class="text-sm font-bold text-violet-400">Rp 90.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Mythic Honor (Per Star)</span>
+                                <span class="text-sm font-bold text-violet-400">Rp 12.000</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-[#0B0E14]/40 px-4 py-2.5 rounded-xl border border-gray-800/60">
+                                <span class="text-sm font-semibold text-gray-300">Mythic Glory (Per Star)</span>
+                                <span class="text-sm font-bold text-violet-400">Rp 18.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8">
+                        <a href="https://api.whatsapp.com/send?phone=628xxxxxxxxxx&text=Halo%20Admin,%20saya%20mau%20order%20paket%20Joki%20Premium%20Mythic." target="_blank" class="block w-full text-center bg-[#000] hover:bg-gray-800 border border-gray-800 font-bold py-3.5 px-4 rounded-xl text-sm transition-all duration-200">
+                            Pesan Joki Premium
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni Section -->
+    <section id="testimoni" class="py-20 bg-[#131A26]/30 border-y border-gray-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Testimoni Nyata</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Kata Mereka yang Sudah Mencapai Glory</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testi 1 -->
+                <div class="bg-[#131A26] border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic leading-relaxed">
+                            "Luar biasa, layanannya sangat responsif! Cuma butuh waktu 2 hari dari Epic II langsung tembus Mythic. Win rate heronya pun jadi bagus semua."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-gray-800/60 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-500 to-indigo-600 flex items-center justify-center font-bold text-white text-sm">AN</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Andra N.</h4>
+                            <p class="text-xs text-gray-500">Pelanggan Paket Full Tier</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testi 2 -->
+                <div class="bg-[#131A26] border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic leading-relaxed">
+                            "Awalnya sempat ragu masalah keamanan data, tapi ternyata adminnya amanah dan selalu memperbarui laporan hasil pertandingan via WA. Sangat terpercaya."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-gray-800/60 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white text-sm">RK</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Rian Kurnia</h4>
+                            <p class="text-xs text-gray-500">Pelanggan Joki Per Bintang</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testi 3 -->
+                <div class="bg-[#131A26] border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm italic leading-relaxed">
+                            "Mekanik joki hyper-nya berkelas tinggi. Riwayat pertandingan bersih dari lose streak parah. Penilaian grading 10 match disapu bersih dengan kemenangan penuh."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-gray-800/60 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center font-bold text-white text-sm">FS</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Fahmi S.</h4>
+                            <p class="text-xs text-gray-500">Pelanggan Joki Premium</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-12">
+            <h2 class="text-xs font-bold text-violet-400 uppercase tracking-widest">Pertanyaan Umum</h2>
+            <p class="text-3xl font-extrabold text-white">Sering Ditanyakan (FAQ)</p>
+        </div>
+        
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item bg-[#131A26] border border-gray-800 p-5 rounded-xl cursor-pointer select-none transition-colors duration-200 hover:border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question text-cyan-400 text-sm"></i> Apakah akun saya aman dari sanksi ban selama proses joki?
+                    </h3>
+                    <i class="fa-solid fa-chevron-down text-gray-500 text-xs faq-icon transition-transform duration-300"></i>
+                </div>
+                <p class="faq-answer text-sm text-gray-400 pl-6 leading-relaxed">
+                    Sangat aman! Kami berkomitmen penuh menggunakan keahlian manual murni dari tim joki kami tanpa keterlibatan program ilegal, kecurangan (*cheat*), maupun skrip modifikasi aplikasi. Akun dijamin aman dari deteksi sistem sanksi Moonton.
+                </p>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item bg-[#131A26] border border-gray-800 p-5 rounded-xl cursor-pointer select-none transition-colors duration-200 hover:border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question text-cyan-400 text-sm"></i> Bolehkah saya masuk (login) ke dalam gim ketika proses joki sedang berlangsung?
+                    </h3>
+                    <i class="fa-solid fa-chevron-down text-gray-500 text-xs faq-icon transition-transform duration-300"></i>
+                </div>
+                <p class="faq-answer text-sm text-gray-400 pl-6 leading-relaxed">
+                    Untuk menghindari masalah kegagalan kelayakan akibat tabrakan login ganda (*double login*), pelanggan sangat disarankan untuk tidak masuk ke dalam akun sebelum melakukan konfirmasi atau koordinasi dengan admin terkait jadwal istirahat joki.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 md:py-16 border-t border-gray-800/60 bg-gradient-to-b from-transparent via-[#131A26]/30 to-[#0B0E14]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-gradient-to-tr from-violet-600 p-2 rounded-xl shadow-lg shadow-violet-600/20">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <span class="text-lg font-black bg-gradient-to-r from-white via-gray-200 to-cyan-400 bg-clip-text text-transparent">HYPER<span class="text-cyan-400"> GLORY</span></span>
+                    </div>
+                    <p class="text-sm text-gray-400">Jasa Joki Mobile Legends Profesional dengan tingkat kemenangan tinggi dan keamanan terjamin.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#hero" class="hover:text-cyan-400 transition-colors">Home</a></li>
+                        <li><a href="#fitur" class="hover:text-cyan-400 transition-colors">Keunggulan</a></li>
+                        <li><a href="#harga" class="hover:text-cyan-400 transition-colors">Daftar Harga</a></li>
+                        <li><a href="#testimoni" class="hover:text-cyan-400 transition-colors">Testimoni</a></li>
+                        <li><a href="#faq" class="hover:text-cyan-400 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Joki Full Tier</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Joki Per Bintang</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Joki Premium</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Konsultasi Gratis</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact & Social -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+                    <div class="space-y-4">
+                        <p class="text-sm text-gray-400">
+                            <i class="fa-brands fa-whatsapp text-cyan-400 mr-2"></i>
+                            <a href="https://wa.me/628xxxxxxxxxx" target="_blank" class="hover:text-cyan-400 transition-colors">+62 8XX XXXX XXXX</a>
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            <i class="fa-solid fa-envelope text-cyan-400 mr-2"></i>
+                            <a href="mailto:info@hyperglory.com" class="hover:text-cyan-400 transition-colors">info@hyperglory.com</a>
+                        </p>
+                        
+                        <!-- Social Media Icons -->
+                        <div class="flex gap-3 mt-4">
+                            <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12c0-3.403 2.759-6.162 6.162-6.162 3.403 0 6.162 2.759 6.162 6.162 0 3.403-2.759 6.162-6.162 6.162-3.403 0-6.162-2.759-6.162-6.162zm2.889 0c0 1.821 1.452 3.273 3.273 3.273 1.821 0 3.273-1.452 3.273-3.273 0-1.821-1.452-3.273-3.273-3.273-1.821 0-3.273 1.452-3.273 3.273zm10.771-6.555c0 .795.645 1.44 1.44 1.44.795 0 1.44-.645 1.44-1.44 0-.795-.645-1.44-1.44-1.44-.795 0-1.44.645-1.44 1.44z"/></svg>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" class="social-icon" title="Facebook">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" class="social-icon" title="TikTok">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.498 3.75H15.75V2.25h-2.25v1.5H9.75V0h-2.25v3.75H4.5V6h3v10.5c0 3.003 2.247 5.25 5.25 5.25 1.575 0 3-0.675 3.75-1.5v-2.25c-0.75 0.45-1.95 0.75-2.85 0.75-1.65 0-3-1.35-3-3V6h3.75V3.75z"/></svg>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" class="social-icon" title="YouTube">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </a>
+                            <a href="https://discord.com" target="_blank" class="social-icon" title="Discord">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.491c-1.923-.892-3.971-1.559-6.114-1.917.261.469.502.978.738 1.507-1.754-.406-3.477-.406-5.187 0 .236-.529.477-1.038.738-1.507-2.142.358-4.192 1.025-6.114 1.917-3.854 5.849-4.49 11.563-4.009 17.289 2.182 1.696 4.408 2.817 6.58 3.4 1.631-2.228 2.645-4.776 3.12-7.244-1.079-.67-2.587-.72-4.003-.72v-.5c0-1.657.343-3.29 1.023-4.831 1.331-.72 2.684-1.138 4.042-1.138.04-2.165-.079-4.330-.236-6.514zm-5.214 5.209c-.419 0-.744.364-1.049.871-.305.508-.474 1.244-.474 2.04s.169 1.532.474 2.04c.305.507.63.871 1.049.871.419 0 .744-.364 1.049-.871.305-.508.474-1.244.474-2.04s-.169-1.532-.474-2.04c-.305-.507-.63-.871-1.049-.871zm4.766 0c-.419 0-.744.364-1.049.871-.305.508-.474 1.244-.474 2.04s.169 1.532.474 2.04c.305.507.63.871 1.049.871.419 0 .744-.364 1.049-.871.305-.508.474-1.244.474-2.04s-.169-1.532-.474-2.04c-.305-.507-.63-.871-1.049-.871z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="border-t border-gray-800/50 pt-8">
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-gray-500">
+                    <p>&copy; 2024 Hyper Glory. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a href="#" class="hover:text-cyan-400 transition-colors">Kebijakan Privasi</a>
+                        <a href="#" class="hover:text-cyan-400 transition-colors">Syarat & Ketentuan</a>
+                        <a href="#" class="hover:text-cyan-400 transition-colors">Hubungi Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Fungsional Interaktif -->
+    <script>
+        // 1. Logika Interaksi Navigasi Mobile (Hamburger Menu)
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Menutup menu drawer mobile otomatis setelah link navigasi ditekan
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Logika Interaksi Accordion FAQ (Buka Tutup Halus)
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Menutup panel FAQ lain yang sedang terbuka secara otomatis (Clean UX)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('faq-active');
+                    }
+                });
+                
+                // Toggle kelas aktif pada elemen yang dipilih
+                item.classList.toggle('faq-active');
+            });
+        });
+        
+        // Navbar Menu Active Handler
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Hapus active class dari semua link
+                navLinks.forEach(l => l.classList.remove('active'));
+                // Tambahkan active class ke link yang diklik
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
